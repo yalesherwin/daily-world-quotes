@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>每日世界名言 · 中英双语</title>
+  <style>
+    :root{
+      --bg:#0b1020;--card:#131a2f;--text:#e8edf8;--muted:#a8b2d1;--gold:#ffd166;--cyan:#66e3ff;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Noto Sans SC",sans-serif;background:radial-gradient(circle at 15% 10%,#1d2952 0,#0b1020 45%,#070b16 100%);color:var(--text);min-height:100vh}
+    .wrap{max-width:920px;margin:0 auto;padding:36px 18px 60px}
+    h1{margin:0 0 8px;font-size:30px;letter-spacing:.5px}
+    .sub{color:var(--muted);margin-bottom:22px}
+    .card{background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:26px;backdrop-filter:blur(8px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+    .date{display:inline-block;background:rgba(102,227,255,.12);color:var(--cyan);padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:14px}
+    .en{font-size:28px;line-height:1.5;font-weight:700;color:#fff}
+    .zh{margin-top:16px;font-size:22px;line-height:1.7;color:#f2f6ff}
+    .author{margin-top:18px;color:var(--gold);font-weight:700}
+    .tip{margin-top:14px;color:var(--muted);font-size:13px}
+    .history{margin-top:26px}
+    .item{padding:12px 0;border-bottom:1px dashed rgba(255,255,255,.15)}
+    .item .d{font-size:12px;color:var(--cyan)}
+    .item .q{margin-top:3px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>每日世界名人名家语录</h1>
+    <div class="sub">中英双语 · 不重复 · 可用于抖音文案</div>
+
+    <div class="card" id="todayCard">
+      <div class="date">加载中...</div>
+      <div class="en">...</div>
+      <div class="zh">...</div>
+      <div class="author"></div>
+      <div class="tip">建议排版：上英文 / 下中文 / 署名放右下角</div>
+    </div>
+
+    <div class="history">
+      <h3>最近语录</h3>
+      <div id="history"></div>
+    </div>
+  </div>
+
+<script>
+async function run(){
+  const today = await fetch('./data/today.json?t=' + Date.now()).then(r=>r.json());
+  const hist = await fetch('./data/history.json?t=' + Date.now()).then(r=>r.json()).catch(()=>[]);
+
+  const card = document.getElementById('todayCard');
+  card.querySelector('.date').textContent = `📅 ${today.date}`;
+  card.querySelector('.en').textContent = `“${today.quote_en}”`;
+  card.querySelector('.zh').textContent = `“${today.quote_zh}”`;
+  card.querySelector('.author').textContent = `— ${today.author}`;
+
+  const el = document.getElementById('history');
+  el.innerHTML = hist.slice(0,12).map(x=>`<div class="item"><div class="d">${x.date}</div><div class="q">${x.quote_zh}</div></div>`).join('');
+}
+run();
+</script>
+</body>
+</html>

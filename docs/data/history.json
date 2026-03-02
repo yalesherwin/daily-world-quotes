@@ -1,0 +1,18 @@
+[
+  {
+    "id": "d8b392647b2cb070",
+    "date": "2026-03-02",
+    "author": "Thomas Edison",
+    "quote_en": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+    "quote_zh": "天才是百分之一的灵感和百分之九十九的汗水。",
+    "source": "https://type.fit/api/quotes"
+  },
+  {
+    "id": "init",
+    "date": "2026-03-02",
+    "author": "Lao Tzu",
+    "quote_en": "The journey of a thousand miles begins with one step.",
+    "quote_zh": "千里之行，始于足下。",
+    "source": "seed"
+  }
+]
