@@ -3,51 +3,70 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>每日世界名言 · 中英双语</title>
+  <title>Daily Quote · 世界语录</title>
   <style>
     :root{
-      --bg:#0b1020;--card:#131a2f;--text:#e8edf8;--muted:#a8b2d1;--gold:#ffd166;--cyan:#66e3ff;
+      --bg:#070b16;--card:#0f1830;--text:#edf2ff;--muted:#9fb0d9;--gold:#ffd166;--cyan:#6ee7ff;--line:rgba(255,255,255,.15);
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Noto Sans SC",sans-serif;background:radial-gradient(circle at 15% 10%,#1d2952 0,#0b1020 45%,#070b16 100%);color:var(--text);min-height:100vh}
-    .wrap{max-width:920px;margin:0 auto;padding:36px 18px 60px}
-    h1{margin:0 0 8px;font-size:30px;letter-spacing:.5px}
-    .sub{color:var(--muted);margin-bottom:22px}
-    .card{background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:26px;backdrop-filter:blur(8px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
-    .date{display:inline-block;background:rgba(102,227,255,.12);color:var(--cyan);padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:14px}
-    .en{font-size:28px;line-height:1.5;font-weight:700;color:#fff}
-    .zh{margin-top:16px;font-size:22px;line-height:1.7;color:#f2f6ff}
-    .author{margin-top:18px;color:var(--gold);font-weight:700}
-    .tip{margin-top:14px;color:var(--muted);font-size:13px}
-    .actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;padding:9px 14px;border-radius:10px;cursor:pointer;font-weight:600}
-    .btn:hover{background:rgba(255,255,255,.12)}
-    .btn.primary{border-color:rgba(102,227,255,.45);background:rgba(102,227,255,.15);color:var(--cyan)}
-    .history{margin-top:26px}
-    .item{padding:12px 0;border-bottom:1px dashed rgba(255,255,255,.15)}
+    body{margin:0;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Noto Sans SC",sans-serif;
+      background:
+        radial-gradient(1200px 500px at 15% 10%, #21346a 0%, transparent 60%),
+        radial-gradient(1000px 400px at 90% 100%, #341b62 0%, transparent 65%),
+        linear-gradient(160deg,#050914 0%,#0a1022 45%,#060912 100%);
+      min-height:100vh;}
+    .wrap{max-width:980px;margin:0 auto;padding:42px 18px 60px}
+    .top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+    h1{margin:0;font-size:34px;letter-spacing:.6px}
+    .sub{color:var(--muted);margin-top:8px}
+    .badge{font-size:12px;padding:7px 11px;border-radius:999px;background:rgba(110,231,255,.13);color:var(--cyan);border:1px solid rgba(110,231,255,.35)}
+
+    .card{margin-top:22px;padding:30px;border:1px solid var(--line);border-radius:22px;
+      background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+      box-shadow:0 20px 60px rgba(0,0,0,.4);backdrop-filter:blur(9px)}
+    .date{display:inline-block;font-size:12px;padding:7px 11px;border-radius:999px;background:rgba(255,209,102,.13);color:var(--gold);border:1px solid rgba(255,209,102,.35)}
+    .en{margin-top:16px;font-size:32px;line-height:1.45;font-weight:800;letter-spacing:.3px}
+    .zh{margin-top:16px;font-size:24px;line-height:1.75;color:#f6f9ff}
+    .author{margin-top:18px;color:var(--cyan);font-weight:700;font-size:18px}
+    .tip{margin-top:10px;color:var(--muted);font-size:13px}
+
+    .actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{border:1px solid var(--line);background:rgba(255,255,255,.07);color:#fff;padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:700}
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.13)}
+    .btn.primary{border-color:rgba(110,231,255,.5);background:rgba(110,231,255,.16);color:var(--cyan)}
+
+    .history{margin-top:28px;padding:20px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}
+    .history h3{margin:0 0 12px}
+    .item{padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.14)}
+    .item:last-child{border-bottom:none}
     .item .d{font-size:12px;color:var(--cyan)}
-    .item .q{margin-top:3px}
+    .item .q{margin-top:4px;color:#dce5ff}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>每日世界名人名家语录</h1>
-    <div class="sub">中英双语 · 不重复 · 可用于抖音文案</div>
+    <div class="top">
+      <div>
+        <h1>每日世界名人名家语录</h1>
+        <div class="sub">中英双语 · 不重复（云端每日）· 抖音可直接用</div>
+      </div>
+      <div class="badge" id="status">READY</div>
+    </div>
 
     <div class="card" id="todayCard">
       <div class="date">加载中...</div>
       <div class="en">...</div>
       <div class="zh">...</div>
       <div class="author"></div>
-      <div class="tip">建议排版：上英文 / 下中文 / 署名放右下角</div>
+      <div class="tip">你要求的模式：手动更新会“直接拉新内容”，不是历史轮播。</div>
       <div class="actions">
-        <button class="btn primary" id="nextBtn">手动更新下一条</button>
-        <button class="btn" id="resetBtn">恢复今日</button>
+        <button class="btn primary" id="nextBtn">手动更新下一条（实时拉新）</button>
+        <button class="btn" id="copyBtn">复制抖音文案</button>
       </div>
     </div>
 
     <div class="history">
-      <h3>最近语录</h3>
+      <h3>最近语录（仅展示）</h3>
       <div id="history"></div>
     </div>
   </div>
@@ -55,47 +74,82 @@
 <script>
 let todayData = null;
 let historyData = [];
-let historyIndex = 0;
+const shown = new Set();
+
+function setStatus(t){ document.getElementById('status').textContent = t; }
 
 function renderCard(item, tagText){
   const card = document.getElementById('todayCard');
-  card.querySelector('.date').textContent = tagText || `📅 ${item.date}`;
-  card.querySelector('.en').textContent = `“${item.quote_en}”`;
-  card.querySelector('.zh').textContent = `“${item.quote_zh}”`;
-  card.querySelector('.author').textContent = `— ${item.author}`;
+  card.querySelector('.date').textContent = tagText || `📅 ${item.date || ''}`;
+  card.querySelector('.en').textContent = `“${item.quote_en || ''}”`;
+  card.querySelector('.zh').textContent = `“${item.quote_zh || ''}”`;
+  card.querySelector('.author').textContent = `— ${item.author || '佚名'}`;
+}
+
+async function translateZhToEn(text){
+  const q = encodeURIComponent(text);
+  const url = `https://api.mymemory.translated.net/get?q=${q}&langpair=zh-CN|en`;
+  const r = await fetch(url);
+  const d = await r.json();
+  return d?.responseData?.translatedText?.trim() || text;
+}
+
+async function fetchLiveNewQuote(retry=8){
+  for (let i=0;i<retry;i++){
+    const r = await fetch('https://v1.hitokoto.cn/?encode=json&max_length=90&t=' + Date.now());
+    const d = await r.json();
+    const zh = (d.hitokoto || '').trim();
+    const author = (d.from_who || d.from || '佚名').trim();
+    const key = `${zh}|${author}`;
+    if (!zh || shown.has(key)) continue;
+    shown.add(key);
+    const en = await translateZhToEn(zh).catch(()=>zh);
+    return {
+      id: key,
+      date: new Date().toISOString().slice(0,10),
+      author,
+      quote_zh: zh,
+      quote_en: en,
+      source: 'https://v1.hitokoto.cn/'
+    };
+  }
+  throw new Error('暂无新内容，请稍后重试');
 }
 
 function bindActions(){
-  document.getElementById('nextBtn').addEventListener('click', ()=>{
-    if (!historyData.length || historyData.length < 2) {
-      alert('历史语录不足，明天自动更新后会有更多可切换内容。');
-      return;
+  document.getElementById('nextBtn').addEventListener('click', async ()=>{
+    try{
+      setStatus('UPDATING...');
+      const item = await fetchLiveNewQuote();
+      todayData = item;
+      renderCard(item, `🔄 实时更新 · ${item.date}`);
+      setStatus('UPDATED');
+    }catch(e){
+      alert(e.message || '更新失败，请稍后重试');
+      setStatus('RETRY');
     }
-    historyIndex = (historyIndex + 1) % historyData.length;
-    const nextItem = historyData[historyIndex];
-    renderCard(nextItem, `🔄 手动模式 · ${nextItem.date}`);
   });
 
-  document.getElementById('resetBtn').addEventListener('click', ()=>{
-    historyIndex = 0;
-    if (todayData) renderCard(todayData, `📅 ${todayData.date}`);
+  document.getElementById('copyBtn').addEventListener('click', async ()=>{
+    if (!todayData) return;
+    const text = `${todayData.quote_zh}\n\n${todayData.quote_en}\n\n— ${todayData.author}\n#外贸 #成长 #每日语录`;
+    await navigator.clipboard.writeText(text);
+    setStatus('COPIED');
   });
 }
 
 async function run(){
+  setStatus('LOADING...');
   todayData = await fetch('./data/today.json?t=' + Date.now()).then(r=>r.json());
   historyData = await fetch('./data/history.json?t=' + Date.now()).then(r=>r.json()).catch(()=>[]);
-
-  if (!Array.isArray(historyData) || historyData.length === 0) historyData = [todayData];
-
-  // 默认第0条是今日语录
-  historyIndex = 0;
   renderCard(todayData, `📅 ${todayData.date}`);
+  shown.add(`${todayData.quote_zh}|${todayData.author}`);
 
   const el = document.getElementById('history');
-  el.innerHTML = historyData.slice(0,12).map(x=>`<div class="item"><div class="d">${x.date}</div><div class="q">${x.quote_zh}</div></div>`).join('');
+  el.innerHTML = (historyData || []).slice(0,12).map(x=>`<div class="item"><div class="d">${x.date}</div><div class="q">${x.quote_zh}</div></div>`).join('');
 
   bindActions();
+  setStatus('READY');
 }
 run();
 </script>
