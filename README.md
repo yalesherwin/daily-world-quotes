@@ -3,8 +3,8 @@
 自动生成每天一条不重复的世界名人名家语录（中英双语），用于抖音发布。
 
 ## 功能
-- 每天抽取一条英文名言（来源：type.fit quote dataset）
-- 自动翻译成中文（MyMemory 免费翻译 API）
+- 每天抽取一条中文语录（来源：一言 hitokoto）
+- 自动翻译成英文（MyMemory 免费翻译 API）
 - 去重：不会重复使用同一条语录（通过 `data/used_ids.json` 记录）
 - 漂亮展示页：`docs/index.html`
 - 可部署到 GitHub Pages
