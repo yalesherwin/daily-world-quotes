@@ -14,5 +14,37 @@
     "quote_en": "The journey of a thousand miles begins with one step.",
     "quote_zh": "千里之行，始于足下。",
     "source": "seed"
+  },
+  {
+    "id": "f79110e18df94ac7",
+    "date": "2026-03-02",
+    "author": "Abraham Lincoln",
+    "quote_en": "A house divided against itself cannot stand.",
+    "quote_zh": "有内讧的家不能存在；家和万事兴。",
+    "source": "https://type.fit/api/quotes"
+  },
+  {
+    "id": "97dd1076edda55fe",
+    "date": "2026-03-02",
+    "author": "Johann Wolfgang von Goethe",
+    "quote_en": "Difficulties increase the nearer we get to the goal.",
+    "quote_zh": "我们越接近目标，困难就越大。",
+    "source": "https://type.fit/api/quotes"
+  },
+  {
+    "id": "fadda57ab517b507",
+    "date": "2026-03-02",
+    "author": "Byron Pulsifer",
+    "quote_en": "Fate is in your hands and no one elses",
+    "quote_zh": "命运掌握在你手中，没有其他人",
+    "source": "https://type.fit/api/quotes"
+  },
+  {
+    "id": "3d6369408d74a92b",
+    "date": "2026-03-02",
+    "author": "Yogi Berra",
+    "quote_en": "You can observe a lot just by watching.",
+    "quote_zh": "您可以通过观看来观察很多。",
+    "source": "https://type.fit/api/quotes"
   }
 ]
