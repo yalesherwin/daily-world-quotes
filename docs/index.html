@@ -19,6 +19,10 @@
     .zh{margin-top:16px;font-size:22px;line-height:1.7;color:#f2f6ff}
     .author{margin-top:18px;color:var(--gold);font-weight:700}
     .tip{margin-top:14px;color:var(--muted);font-size:13px}
+    .actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;padding:9px 14px;border-radius:10px;cursor:pointer;font-weight:600}
+    .btn:hover{background:rgba(255,255,255,.12)}
+    .btn.primary{border-color:rgba(102,227,255,.45);background:rgba(102,227,255,.15);color:var(--cyan)}
     .history{margin-top:26px}
     .item{padding:12px 0;border-bottom:1px dashed rgba(255,255,255,.15)}
     .item .d{font-size:12px;color:var(--cyan)}
@@ -36,6 +40,10 @@
       <div class="zh">...</div>
       <div class="author"></div>
       <div class="tip">建议排版：上英文 / 下中文 / 署名放右下角</div>
+      <div class="actions">
+        <button class="btn primary" id="nextBtn">手动更新下一条</button>
+        <button class="btn" id="resetBtn">恢复今日</button>
+      </div>
     </div>
 
     <div class="history">
@@ -45,18 +53,49 @@
   </div>
 
 <script>
-async function run(){
-  const today = await fetch('./data/today.json?t=' + Date.now()).then(r=>r.json());
-  const hist = await fetch('./data/history.json?t=' + Date.now()).then(r=>r.json()).catch(()=>[]);
+let todayData = null;
+let historyData = [];
+let historyIndex = 0;
 
+function renderCard(item, tagText){
   const card = document.getElementById('todayCard');
-  card.querySelector('.date').textContent = `📅 ${today.date}`;
-  card.querySelector('.en').textContent = `“${today.quote_en}”`;
-  card.querySelector('.zh').textContent = `“${today.quote_zh}”`;
-  card.querySelector('.author').textContent = `— ${today.author}`;
+  card.querySelector('.date').textContent = tagText || `📅 ${item.date}`;
+  card.querySelector('.en').textContent = `“${item.quote_en}”`;
+  card.querySelector('.zh').textContent = `“${item.quote_zh}”`;
+  card.querySelector('.author').textContent = `— ${item.author}`;
+}
+
+function bindActions(){
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    if (!historyData.length || historyData.length < 2) {
+      alert('历史语录不足，明天自动更新后会有更多可切换内容。');
+      return;
+    }
+    historyIndex = (historyIndex + 1) % historyData.length;
+    const nextItem = historyData[historyIndex];
+    renderCard(nextItem, `🔄 手动模式 · ${nextItem.date}`);
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    historyIndex = 0;
+    if (todayData) renderCard(todayData, `📅 ${todayData.date}`);
+  });
+}
+
+async function run(){
+  todayData = await fetch('./data/today.json?t=' + Date.now()).then(r=>r.json());
+  historyData = await fetch('./data/history.json?t=' + Date.now()).then(r=>r.json()).catch(()=>[]);
+
+  if (!Array.isArray(historyData) || historyData.length === 0) historyData = [todayData];
+
+  // 默认第0条是今日语录
+  historyIndex = 0;
+  renderCard(todayData, `📅 ${todayData.date}`);
 
   const el = document.getElementById('history');
-  el.innerHTML = hist.slice(0,12).map(x=>`<div class="item"><div class="d">${x.date}</div><div class="q">${x.quote_zh}</div></div>`).join('');
+  el.innerHTML = historyData.slice(0,12).map(x=>`<div class="item"><div class="d">${x.date}</div><div class="q">${x.quote_zh}</div></div>`).join('');
+
+  bindActions();
 }
 run();
 </script>
